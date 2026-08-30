@@ -1,0 +1,30 @@
+.page-hero--image {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.page-hero__image {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.82) brightness(0.68);
+}
+
+.page-hero__overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10, 11, 9, 0.9), rgba(10, 11, 9, 0.64) 54%, rgba(10, 11, 9, 0.33));
+}
+
+.page-hero--image .page-hero__inner {
+  position: relative;
+}
+
+@media (max-width: 760px) {
+  .page-hero__overlay {
+    background: linear-gradient(90deg, rgba(10, 11, 9, 0.86), rgba(10, 11, 9, 0.58));
+  }
+}

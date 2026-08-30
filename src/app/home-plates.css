@@ -1,0 +1,9 @@
+.plates__grid--photos > .plate:not(.plate--wide) {
+  grid-row: span 2;
+}
+
+@media (max-width: 760px) {
+  .plates__grid--photos > .plate:not(.plate--wide) {
+    grid-row: auto;
+  }
+}

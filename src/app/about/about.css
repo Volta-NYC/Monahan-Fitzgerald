@@ -1,0 +1,35 @@
+.story-mark--image {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  color: var(--cream);
+  background: var(--ink);
+}
+
+.story-mark--image img {
+  object-fit: cover;
+  filter: brightness(0.62) saturate(0.8);
+}
+
+.story-mark--image::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, rgba(10, 11, 9, 0.08), rgba(10, 11, 9, 0.7));
+}
+
+.story-mark--image span {
+  position: absolute;
+  z-index: 1;
+  right: 8%;
+  bottom: 7%;
+  color: var(--cream);
+  font: 600 clamp(5.5rem, 10vw, 9rem) / 0.75 var(--display);
+  letter-spacing: -0.09em;
+}
+
+@media (max-width: 760px) {
+  .story-mark--image {
+    min-height: 360px;
+  }
+}
