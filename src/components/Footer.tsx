@@ -13,7 +13,6 @@ export function Footer() {
       </div>
       <div className="footer__column"><p className="footer__label">Find us</p><a href={site.maps} target="_blank" rel="noreferrer">{site.address}</a><a href={site.phoneHref}>{site.phone}</a></div>
       <div className="footer__column"><p className="footer__label">Explore</p><Link href="/menu">Menu</Link><Link href="/order">Order online</Link><Link href="/private-parties">Private parties</Link><Link href="/about">Our story</Link><Link href="/visit">Visit</Link></div>
-      <div className="footer__column footer__social"><p className="footer__label">Follow the room</p><a href={site.instagram} target="_blank" rel="noreferrer"><span>Instagram</span><b aria-hidden="true">↗</b></a><a href={site.facebook} target="_blank" rel="noreferrer"><span>Facebook</span><b aria-hidden="true">↗</b></a></div>
     </div>
     <div className="shell footer__bottom"><strong>Monahan <i>&amp;</i> Fitzgerald</strong><span>© {new Date().getFullYear()} · Bayside, New York</span><a href="https://novusnyc.org" target="_blank" rel="noreferrer">Made by Novus</a></div>
   </footer>;
