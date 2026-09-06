@@ -1,15 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PhotoReel } from "@/components/PhotoReel";
 import { menuMoments, site } from "@/lib/site";
-
-const reel = [
-  { src: "/images/fish-and-chips.png", alt: "Fish and chips at Monahan and Fitzgerald", label: "Fish & chips", shape: "wide" },
-  { src: "/images/interior.jpeg", alt: "The upstairs room at Monahan and Fitzgerald", label: "Upstairs in Bayside", shape: "tall" },
-  { src: "/images/wings.png", alt: "Buffalo wings at Monahan and Fitzgerald", label: "Buffalo wings", shape: "square" },
-  { src: "/images/bar-guinness.jpeg", alt: "A Guinness at the Monahan and Fitzgerald bar", label: "A seat at the bar", shape: "tall" },
-  { src: "/images/chicken-francaise.jpeg", alt: "Chicken Française at Monahan and Fitzgerald", label: "Chicken Française", shape: "wide" },
-  { src: "/images/exterior.png", alt: "Monahan and Fitzgerald on 41st Avenue", label: "214-17 41st Avenue", shape: "square" },
-];
 
 export default function Home() {
   return <>
@@ -40,12 +32,7 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="photo-reel" aria-labelledby="reel-title">
-      <div className="shell photo-reel__heading"><h2 id="reel-title">Pass it<br /><i>around.</i></h2><p>Food, friends, and a room that feels right. Scroll the table.</p></div>
-      <div className="photo-reel__track" role="region" aria-label="Monahan and Fitzgerald gallery" tabIndex={0}>
-        {reel.map((item) => <figure className={`reel-card reel-card--${item.shape}`} key={item.src}><Image src={item.src} alt={item.alt} fill sizes="(max-width: 760px) 82vw, 42vw" /><figcaption>{item.label}</figcaption></figure>)}
-      </div>
-    </section>
+    <PhotoReel />
 
     <section className="menu-preview">
       <div className="shell menu-preview__top reveal"><h2>What sounds<br />good tonight?</h2><Link className="button button--cream" href="/menu">View the full menu</Link></div>
