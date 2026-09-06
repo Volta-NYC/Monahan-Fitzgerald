@@ -5,7 +5,7 @@ export const site = {
   phone: "718-279-4450",
   phoneHref: "tel:+17182794450",
   maps: "https://maps.google.com/?q=Monahan+%26+Fitzgerald+Bayside",
-  order: "https://monahanandfitzgerald.com/",
+  order: "/order",
   instagram: "https://www.instagram.com/monahan_fitzgerald/",
   facebook: "https://www.facebook.com/MonahanFitzgeraldNY/",
   hours: [

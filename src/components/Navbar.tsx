@@ -26,6 +26,7 @@ export function Navbar() {
       </nav>
       <div id="mobile-menu" className={`mobile-menu ${open ? "mobile-menu--open" : ""}`} aria-hidden={!open}>
         {links.map(([label, href]) => <Link href={href} key={href} onClick={() => setOpen(false)}>{label}</Link>)}
+        <Link href="/order" onClick={() => setOpen(false)}>Order online</Link>
         <a href={site.phoneHref}>Call {site.phone}</a>
       </div>
     </header>

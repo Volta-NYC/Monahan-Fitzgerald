@@ -3,6 +3,7 @@ import { Barlow_Condensed, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import "./motion.css";
 import "./page-hero.css";
+import "./revamp.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 
@@ -17,11 +18,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en"><body className={`${display.variable} ${sans.variable}`}>
-    {/* THESIS: A real Bayside bar at the exact moment a regular decides to stay. It rejects generic pub nostalgia and photo-free restaurant landing pages.
-        OWN-WORLD: Black enamel, aged cream, bottle green, brass, condensed sign lettering, the existing crest, and real venue photography.
-        STORY: Visitors see the room, know the address, and can order, visit, or plan an event without hunting.
-        FIRST VIEWPORT: The bar photograph fills the screen, the crest and headline hold the left, and tonight's actions sit directly below.
-        FORM: Bayside after-hours barback, seed b1ffb786. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md. */}
+    {/* THESIS: A moving portrait of a Bayside night, not a static restaurant brochure.
+        OWN-WORLD: Black enamel, deep pub green, warm brass, cream lettering, full-bleed film, and real table photography.
+        STORY: Visitors feel the room first, then move directly to menu, order, directions, events, or the restaurant's social channels.
+        FIRST VIEWPORT: The real M&F film fills the screen while one concise promise and tonight's three practical actions stay legible above it.
+        FORM: Film-led neighborhood institution, evolved from the live venue media. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md. */}
     <Navbar /><main>{children}</main><Footer />
   </body></html>;
 }

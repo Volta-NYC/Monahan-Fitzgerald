@@ -6,3 +6,10 @@ out/
 .env
 .env.*
 !.env.example
+
+# Local design and agent guidance
+AGENTS.md
+CLAUDE.md
+PRODUCT.md
+DESIGN.md
+.impeccable/
