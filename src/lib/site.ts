@@ -22,8 +22,30 @@ export const menuMoments = [
 ];
 
 export const menu = [
-  { category: "Starters", items: ["French Onion Soup", "Buffalo Wings", "Sampler Platter", "Country Salad", "Caesar Salad"] },
-  { category: "Handhelds", items: ["Chicken Caesar Wrap", "Grilled Chicken Sandwich", "Cajun Chicken Sandwich", "French Dip"] },
+  { category: "Starters", items: ["French Onion Soup", "Buffalo Wings", "Stuffed Mushrooms", "Sampler Platter", "Country Salad", "Caesar Salad"] },
+  { category: "Handhelds", items: ["Chicken Caesar Wrap", "Grilled Chicken Sandwich", "Cajun Chicken Sandwich", "French Dip", "Corned Beef Sandwich", "Filet Mignon Sliders"] },
   { category: "Burgers", items: ["Classic Hamburger", "Cheeseburger", "Bacon Cheeseburger", "M.O.M. Burger", "Burger Sliders"] },
-  { category: "Pub classics", items: ["Baby Back Ribs", "Chicken Française", "Shepherd’s Pie", "Corned Beef & Cabbage", "Fish & Chips"] },
+  { category: "Pub classics", items: ["Baby Back Ribs", "The Pub Steak", "14 oz. NY Strip Steak", "Chicken Française", "Shepherd’s Pie", "Chicken Pot Pie", "Chicken Romano", "Sautéed Shrimp", "Raul’s Special House Pasta", "Lobster Ravioli", "Penne alla Vodka", "Steak Tidbits", "Corned Beef & Cabbage", "Fish & Chips"] },
 ];
+
+export const menuImages: Record<string, { src: string; alt: string }> = {
+  Starters: { src: "/images/gallery-room-4.png", alt: "Buffalo wings with celery and carrots" },
+  Handhelds: { src: "/images/gallery-room-3.png", alt: "French dip sandwiches with fries and au jus" },
+  Burgers: { src: "/images/gallery-room-5.png", alt: "Filet mignon sliders with fries" },
+  "Pub classics": { src: "/images/gallery-welcome.jpeg", alt: "Corned beef and cabbage with a Guinness at the bar" },
+};
+
+export const menuDescriptions: Record<string, string> = {
+  "Baby Back Ribs": "A full rack with house barbecue sauce, served in the classic pub style.",
+  "The Pub Steak": "A neighborhood steak-house favorite with frizzled onions and fries.",
+  "14 oz. NY Strip Steak": "A hand-cut strip steak grilled to order.",
+  "Chicken Française": "Battered chicken in a lemon and white-wine sauce.",
+  "Shepherd’s Pie": "Ground sirloin, vegetables, rich gravy, and a golden mashed-potato top.",
+  "Chicken Pot Pie": "Creamy chicken filling under puff pastry.",
+  "Chicken Romano": "Chicken medallions with garlic, white wine, mushrooms, prosciutto, and mozzarella.",
+  "Sautéed Shrimp": "White wine, garlic, cilantro, and lime over rice.",
+  "Raul’s Special House Pasta": "Penne, Italian sausage, chicken, peppers, onions, and mushrooms.",
+  "Lobster Ravioli": "Lobster ravioli finished with lobster sauce and jumbo shrimp.",
+  "Penne alla Vodka": "Penne with plum tomatoes and a touch of cream.",
+  "Steak Tidbits": "Steak served over toasted bread rounds with classic sides.",
+};

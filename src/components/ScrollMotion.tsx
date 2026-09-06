@@ -12,7 +12,6 @@ export function ScrollMotion() {
 
     const root = document.documentElement;
     const elements = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
-    root.classList.add("motion-ready");
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -22,6 +21,7 @@ export function ScrollMotion() {
       });
     }, { rootMargin: "0px 0px -8%", threshold: 0.1 });
 
+    root.classList.add("motion-ready");
     elements.forEach((element) => observer.observe(element));
 
     return () => {

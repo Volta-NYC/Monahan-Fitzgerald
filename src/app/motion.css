@@ -12,25 +12,48 @@
   .hero__copy > :nth-child(4) { animation-delay: 190ms; }
 
   .motion-ready .reveal {
-    transform: translateY(24px);
-    transition: transform 720ms cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0.18;
+    transform: translateY(52px);
+    transition: opacity 680ms ease, transform 780ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   .motion-ready .reveal.is-visible {
+    opacity: 1;
     transform: translateY(0);
   }
 
-  .motion-ready .home-party__image.reveal {
-    clip-path: inset(7% 0 0);
-    transition: clip-path 780ms cubic-bezier(0.23, 1, 0.32, 1), transform 720ms cubic-bezier(0.23, 1, 0.32, 1);
+  .motion-ready .reveal-mask {
+    clip-path: inset(0 0 18% 0);
+    transform: translateY(34px) scale(0.985);
+    transition: opacity 680ms ease, clip-path 820ms cubic-bezier(0.77, 0, 0.175, 1), transform 820ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .motion-ready .home-party__image.reveal.is-visible {
+  .motion-ready .reveal-mask.is-visible,
+  .motion-ready .menu-group.is-visible .reveal-mask {
     clip-path: inset(0);
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
   .menu-preview__item:nth-child(2) { transition-delay: 55ms; }
   .menu-preview__item:nth-child(3) { transition-delay: 110ms; }
+
+  .motion-ready .review-wall .review-tile {
+    opacity: 0;
+    transform: translateY(44px) rotate(-1.5deg);
+    transition: opacity 520ms ease, transform 720ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .motion-ready .review-wall.is-visible .review-tile {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+
+  .motion-ready .review-wall .review-tile:nth-child(2) { transition-delay: 55ms; }
+  .motion-ready .review-wall .review-tile:nth-child(3) { transition-delay: 110ms; }
+  .motion-ready .review-wall .review-tile:nth-child(4) { transition-delay: 165ms; }
+  .motion-ready .review-wall .review-tile:nth-child(5) { transition-delay: 220ms; }
+  .motion-ready .review-wall .review-tile:nth-child(6) { transition-delay: 275ms; }
 
   .order-item {
     transition: color 160ms ease, transform 160ms ease;

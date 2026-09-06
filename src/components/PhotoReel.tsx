@@ -5,10 +5,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const reel = [
   { src: "/images/fish-and-chips.png", alt: "Fish and chips at Monahan and Fitzgerald", label: "Fish & chips", shape: "wide" },
-  { src: "/images/interior.jpeg", alt: "The upstairs room at Monahan and Fitzgerald", label: "Upstairs in Bayside", shape: "tall" },
+  { src: "/images/gallery-welcome.jpeg", alt: "Corned beef, cabbage, and a Guinness at the bar", label: "At the bar", shape: "wide" },
   { src: "/images/wings.png", alt: "Buffalo wings at Monahan and Fitzgerald", label: "Buffalo wings", shape: "square" },
   { src: "/images/bar-guinness.jpeg", alt: "A Guinness at the Monahan and Fitzgerald bar", label: "A seat at the bar", shape: "tall" },
   { src: "/images/chicken-francaise.jpeg", alt: "Chicken Française at Monahan and Fitzgerald", label: "Chicken Française", shape: "wide" },
+  { src: "/images/gallery-room-3.png", alt: "French dip sandwiches with fries and au jus", label: "French dip", shape: "square" },
+  { src: "/images/gallery-room-5.png", alt: "Filet mignon sliders with fries", label: "Filet mignon sliders", shape: "square" },
+  { src: "/images/gallery-social-1.jpeg", alt: "The upstairs private dining room set for an event", label: "The upstairs room", shape: "wide" },
+  { src: "/images/gallery-social-4.jpeg", alt: "Guinness artwork and flowers in the upstairs room", label: "Room details", shape: "tall" },
   { src: "/images/exterior.png", alt: "Monahan and Fitzgerald on 41st Avenue", label: "214-17 41st Avenue", shape: "square" },
 ];
 

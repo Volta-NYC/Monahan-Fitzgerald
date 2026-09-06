@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PhotoReel } from "@/components/PhotoReel";
+import { ReviewWall } from "@/components/ReviewWall";
 import { menuMoments, site } from "@/lib/site";
 
 export default function Home() {
@@ -27,8 +28,11 @@ export default function Home() {
 
     <section className="home-intro">
       <div className="shell home-intro__grid">
-        <h2 className="reveal">A real local,<br />since 1987.</h2>
-        <div className="home-intro__copy reveal"><p>Come in hungry. Stay for the game. Make it a Thursday, a birthday, or a night with no plan at all. Monahan &amp; Fitzgerald is the kind of place Bayside keeps coming back to.</p><Link className="text-link" href="/about">Our story <span aria-hidden="true">↗</span></Link></div>
+        <div className="home-intro__copy reveal"><h2>A real local,<br />since 1987.</h2><p>Come in hungry. Stay for the game. Make it a Thursday, a birthday, or a night with no plan at all.</p><Link className="text-link" href="/about">Our story <span aria-hidden="true">↗</span></Link></div>
+        <div className="home-intro__mosaic reveal reveal-mask">
+          <figure><Image src="/images/gallery-welcome.jpeg" alt="Corned beef and cabbage with a Guinness at the Monahan and Fitzgerald bar" fill sizes="(max-width: 760px) 92vw, 45vw" /></figure>
+          <figure><Image src="/images/exterior.png" alt="The Monahan and Fitzgerald entrance on 41st Avenue" fill sizes="(max-width: 760px) 42vw, 18vw" /></figure>
+        </div>
       </div>
     </section>
 
@@ -41,15 +45,17 @@ export default function Home() {
       </div>
     </section>
 
+    <ReviewWall />
+
     <section className="home-party">
-      <div className="home-party__image reveal"><Image src="/images/interior.jpeg" alt="Monahan and Fitzgerald’s upstairs event room" fill sizes="(max-width: 760px) 100vw, 52vw" /></div>
+      <div className="home-party__media reveal reveal-mask"><div className="home-party__image"><Image src="/images/gallery-social-1.jpeg" alt="Monahan and Fitzgerald’s upstairs event room set for dinner" fill sizes="(max-width: 760px) 100vw, 52vw" /></div><div className="home-party__detail"><Image src="/images/gallery-social-2.jpeg" alt="A private-event table set with navy linens and greenery" fill sizes="(max-width: 760px) 48vw, 22vw" /></div></div>
       <div className="home-party__copy reveal"><h2>Make the upstairs<br /><i>yours.</i></h2><p>Birthdays, family dinners, work gatherings, and the nights that need more room. Tell us what you are planning and we will help you find the right setup.</p><Link className="button" href="/private-parties">Plan a private event</Link></div>
     </section>
 
-    <section className="social-callout">
-      <div className="shell social-callout__inner reveal"><p>See what is happening at the bar</p><div><a href={site.instagram} target="_blank" rel="noreferrer">Instagram</a><a href={site.facebook} target="_blank" rel="noreferrer">Facebook</a></div></div>
+    <section className="social-gallery">
+      <div className="social-gallery__image social-gallery__image--wide reveal reveal-mask"><Image src="/images/gallery-social-3.jpeg" alt="A birthday buffet in the upstairs event room" fill sizes="(max-width: 760px) 100vw, 66vw" /></div>
+      <div className="social-gallery__image reveal reveal-mask"><Image src="/images/gallery-social-4.jpeg" alt="Guinness artwork and flowers in the upstairs room" fill sizes="(max-width: 760px) 100vw, 34vw" /></div>
+      <div className="social-gallery__links"><p>See what is happening at the bar</p><a href={site.instagram} target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a><a href={site.facebook} target="_blank" rel="noreferrer">Facebook <span aria-hidden="true">↗</span></a></div>
     </section>
-
-    <section className="visit-band"><div className="shell visit-band__inner"><p>214-17 41st Avenue, Bayside</p><h2>Come in<br />tonight.</h2><a className="button" href={site.maps} target="_blank" rel="noreferrer">Get directions</a></div></section>
   </>;
 }
