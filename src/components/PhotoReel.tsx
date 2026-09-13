@@ -18,6 +18,7 @@ const reel = [
 
 export function PhotoReel() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const scrollFrame = useRef(0);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -25,15 +26,24 @@ export function PhotoReel() {
     if (!track) return;
 
     const cards = Array.from(track.querySelectorAll<HTMLElement>(".reel-card"));
-    const observer = new IntersectionObserver((entries) => {
-      const mostVisible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (mostVisible) setActive(cards.indexOf(mostVisible.target as HTMLElement));
-    }, { root: track, threshold: [0.45, 0.65, 0.85] });
+    const updateActive = () => {
+      scrollFrame.current = 0;
+      const trackStart = track.getBoundingClientRect().left;
+      const closest = cards.reduce((best, card) => Math.abs(card.getBoundingClientRect().left - trackStart) < Math.abs(best.getBoundingClientRect().left - trackStart) ? card : best, cards[0]);
+      setActive(cards.indexOf(closest));
+    };
+    const requestActive = () => {
+      if (!scrollFrame.current) scrollFrame.current = window.requestAnimationFrame(updateActive);
+    };
 
-    cards.forEach((card) => observer.observe(card));
-    return () => observer.disconnect();
+    track.addEventListener("scroll", requestActive, { passive: true });
+    window.addEventListener("resize", requestActive);
+    updateActive();
+    return () => {
+      window.cancelAnimationFrame(scrollFrame.current);
+      track.removeEventListener("scroll", requestActive);
+      window.removeEventListener("resize", requestActive);
+    };
   }, []);
 
   const moveGallery = useCallback((direction: 1 | -1) => {
@@ -49,6 +59,10 @@ export function PhotoReel() {
       className={`reel-card reel-card--${item.shape}`}
       key={item.src}
       tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowRight") moveGallery(1);
+        if (event.key === "ArrowLeft") moveGallery(-1);
+      }}
     >
       <Image src={item.src} alt={item.alt} fill sizes="(max-width: 760px) 82vw, 42vw" />
       <figcaption>{item.label}</figcaption>
@@ -73,6 +87,7 @@ export function PhotoReel() {
       ref={trackRef}
       role="region"
       aria-label="Monahan and Fitzgerald photo gallery"
+      aria-roledescription="carousel"
     >
       <div className="photo-reel__set">{cards}</div>
     </div>

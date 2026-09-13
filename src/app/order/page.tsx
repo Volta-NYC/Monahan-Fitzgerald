@@ -29,7 +29,7 @@ export default function OrderPage() {
     <section className="order-page">
       <div className="shell order-layout">
         <div className="order-menu">{menu.map((section) => <section key={section.category}><h2>{section.category}</h2>{section.items.map((item) => <button type="button" className="order-item" key={item} onClick={() => add(item)} aria-label={`Add ${item} to order`}><span>{item}</span><b>Add <i>+</i></b></button>)}</section>)}</div>
-        <aside className="cart" aria-live="polite">
+        <aside className="cart" id="order-summary" aria-live="polite">
           <p>Your order</p>
           {count ? <ul>{Object.entries(cart).map(([item, quantity]) => <li key={item}><span><strong>{item}</strong><em>Qty. {quantity}</em></span><button type="button" onClick={() => remove(item)} aria-label={`Remove one ${item}`}>−</button></li>)}</ul> : <div className="cart__empty">Choose a few favorites to start your order.</div>}
           <button type="button" className="button" disabled={!count} onClick={() => { if (count) window.location.href = site.phoneHref; }}>{count ? `Call to place ${mode.toLowerCase()} order` : "Add an item to continue"}</button>
@@ -37,5 +37,6 @@ export default function OrderPage() {
         </aside>
       </div>
     </section>
+    {count ? <div className="mobile-order-bar"><span><b>{count}</b> item{count === 1 ? "" : "s"} · {mode}</span><a href="#order-summary">View order <i>→</i></a></div> : null}
   </>;
 }

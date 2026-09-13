@@ -27,9 +27,14 @@ h1, h2, h3 { text-wrap: balance; }
 
 .mobile-menu { transition: max-height 300ms var(--ease), padding 300ms var(--ease); }
 
+.nav__toggle i { transform-origin: center; transition: transform 220ms var(--ease), opacity 180ms ease; }
+.nav__toggle--open i:first-of-type { transform: translateY(3.5px) rotate(45deg); }
+.nav__toggle--open i:last-of-type { transform: translateY(-3.5px) rotate(-45deg); }
+
 @media (max-width: 760px) {
   html { scroll-padding-top: 88px; }
   .button { min-height: 52px; }
   .nav__toggle { min-width: 44px; min-height: 44px; }
   .mobile-menu a { display: flex; align-items: center; min-height: 44px; }
+  body.menu-is-open { overflow: hidden; }
 }
