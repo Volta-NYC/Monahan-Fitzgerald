@@ -32,7 +32,8 @@ export function ScrollMotion() {
       parallaxItems.forEach((element) => {
         const factor = Number(element.dataset.parallax || "0.06");
         const distanceFromCenter = element.getBoundingClientRect().top + element.offsetHeight / 2 - viewportCenter;
-        const offset = Math.max(-72, Math.min(72, -distanceFromCenter * factor));
+        const maxOffset = element.classList.contains("gallery__feature-image") ? (window.innerWidth <= 760 ? 58 : 118) : element.classList.contains("page-hero__image") ? (window.innerWidth <= 760 ? 46 : 78) : (window.innerWidth <= 760 ? 48 : 88);
+        const offset = Math.max(-maxOffset, Math.min(maxOffset, -distanceFromCenter * factor));
         element.style.setProperty("--parallax-y", `${offset.toFixed(1)}px`);
       });
     };

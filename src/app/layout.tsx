@@ -5,6 +5,7 @@ import "./motion.css";
 import "./page-hero.css";
 import "./revamp.css";
 import "./polish.css";
+import "./gallery.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { ScrollMotion } from "@/components/ScrollMotion";

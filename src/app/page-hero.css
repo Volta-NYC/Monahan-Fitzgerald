@@ -10,7 +10,7 @@
   object-fit: cover;
   object-position: center;
   filter: saturate(0.82) brightness(0.68);
-  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.055);
+  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.24);
   transition: transform 120ms linear;
 }
 
