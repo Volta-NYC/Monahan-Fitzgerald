@@ -18,71 +18,41 @@ const reel = [
 
 export function PhotoReel() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const loopRef = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(false);
-  const visibleRef = useRef(false);
-  const [paused, setPaused] = useState(false);
-
-  const setPlayback = useCallback((nextPaused: boolean) => {
-    pausedRef.current = nextPaused;
-    setPaused(nextPaused);
-  }, []);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const track = trackRef.current;
-    const loop = loopRef.current;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!track || !loop || reducedMotion.matches) {
-      setPlayback(true);
-      return;
-    }
+    if (!track) return;
 
-    let distance = loop.scrollWidth / 2;
-    let frame = 0;
-    let previous = performance.now();
-    const startOffset = Number.parseFloat(getComputedStyle(track).paddingLeft) || 0;
-    track.scrollLeft = startOffset;
+    const cards = Array.from(track.querySelectorAll<HTMLElement>(".reel-card"));
+    const observer = new IntersectionObserver((entries) => {
+      const mostVisible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (mostVisible) setActive(cards.indexOf(mostVisible.target as HTMLElement));
+    }, { root: track, threshold: [0.45, 0.65, 0.85] });
 
-    const resizeObserver = new ResizeObserver(() => {
-      distance = loop.scrollWidth / 2;
-    });
-    resizeObserver.observe(loop);
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
 
-    const visibilityObserver = new IntersectionObserver(([entry]) => {
-      visibleRef.current = entry.isIntersecting;
-    }, { threshold: 0.05 });
-    visibilityObserver.observe(track);
+  const moveGallery = useCallback((direction: 1 | -1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const next = Math.max(0, Math.min(reel.length - 1, active + direction));
+    const card = track.querySelectorAll<HTMLElement>(".reel-card")[next];
+    card?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+  }, [active]);
 
-    const tick = (now: number) => {
-      const elapsed = Math.min(now - previous, 40);
-      previous = now;
-
-      if (visibleRef.current && !pausedRef.current && !document.hidden && track.matches(":is(:hover, :focus-within)") === false) {
-        track.scrollLeft += elapsed * 0.024;
-        if (track.scrollLeft >= startOffset + distance) track.scrollLeft -= distance;
-      }
-
-      frame = requestAnimationFrame(tick);
-    };
-
-    frame = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(frame);
-      resizeObserver.disconnect();
-      visibilityObserver.disconnect();
-    };
-  }, [setPlayback]);
-
-  const cards = (copy: number) => reel.map((item, index) => (
+  const cards = reel.map((item, index) => (
     <figure
       className={`reel-card reel-card--${item.shape}`}
-      key={`${copy}-${item.src}`}
-      tabIndex={copy === 0 ? 0 : -1}
-      aria-hidden={copy === 1 ? true : undefined}
+      key={item.src}
+      tabIndex={0}
     >
-      <Image src={item.src} alt={copy === 0 ? item.alt : ""} fill sizes="(max-width: 760px) 82vw, 42vw" />
+      <Image src={item.src} alt={item.alt} fill sizes="(max-width: 760px) 82vw, 42vw" />
       <figcaption>{item.label}</figcaption>
-      {copy === 0 ? <span className="sr-only">Image {index + 1} of {reel.length}</span> : null}
+      <span className="sr-only">Image {index + 1} of {reel.length}</span>
     </figure>
   ));
 
@@ -90,32 +60,21 @@ export function PhotoReel() {
     <div className="shell photo-reel__heading reveal">
       <h2 id="reel-title">Pass it<br /><i>around.</i></h2>
       <div className="photo-reel__guide">
-        <p>Food, friends, and a room that feels right. Drag to look around.</p>
-        <span className="photo-reel__status" aria-hidden="true"><b />{paused ? "Paused" : "Moving"}</span>
+        <p>Food, friends, and a room that feels right. Swipe, scroll, or use the arrows to look around.</p>
+        <div className="photo-reel__controls">
+          <span className="photo-reel__count" aria-live="polite">{String(active + 1).padStart(2, "0")} <i>/</i> {String(reel.length).padStart(2, "0")}</span>
+          <button type="button" onClick={() => moveGallery(-1)} disabled={active === 0} aria-label="Previous gallery image">←</button>
+          <button type="button" onClick={() => moveGallery(1)} disabled={active === reel.length - 1} aria-label="Next gallery image">→</button>
+        </div>
       </div>
     </div>
     <div
       className="photo-reel__track"
       ref={trackRef}
       role="region"
-      aria-label="Monahan and Fitzgerald gallery. Hover, touch, or focus an image to pause."
-      data-paused={paused}
-      onMouseEnter={() => setPlayback(true)}
-      onMouseLeave={(event) => setPlayback(event.currentTarget.contains(document.activeElement))}
-      onFocusCapture={() => setPlayback(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setPlayback(false);
-      }}
-      onPointerDown={() => setPlayback(true)}
-      onPointerUp={() => {
-        if (!window.matchMedia("(hover: hover)").matches) setPlayback(false);
-      }}
-      onPointerCancel={() => setPlayback(false)}
+      aria-label="Monahan and Fitzgerald photo gallery"
     >
-      <div className="photo-reel__loop" ref={loopRef}>
-        <div className="photo-reel__set">{cards(0)}</div>
-        <div className="photo-reel__set" aria-hidden="true">{cards(1)}</div>
-      </div>
+      <div className="photo-reel__set">{cards}</div>
     </div>
   </section>;
 }
