@@ -4,6 +4,7 @@ import "./globals.css";
 import "./motion.css";
 import "./page-hero.css";
 import "./revamp.css";
+import "./polish.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { ScrollMotion } from "@/components/ScrollMotion";
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         STORY: Visitors feel the room first, then move directly to menu, order, directions, events, or the restaurant's social channels.
         FIRST VIEWPORT: The real M&F film fills the screen while one concise promise and tonight's three practical actions stay legible above it.
         FORM: Film-led neighborhood institution, evolved from the live venue media. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md. */}
-    <ScrollMotion /><Navbar /><main>{children}</main><Footer />
+    <a className="skip-link" href="#main-content">Skip to content</a>
+    <ScrollMotion /><Navbar /><main id="main-content">{children}</main><Footer />
   </body></html>;
 }

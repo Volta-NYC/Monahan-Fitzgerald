@@ -20,14 +20,14 @@ export default function MenuPage() {
     </nav>
 
     <section className="menu-intro">
-      <div className="menu-intro__main reveal reveal-mask"><Image src="/images/fish-and-chips.png" alt="Fish and chips at Monahan and Fitzgerald" fill sizes="(max-width: 760px) 100vw, 64vw" /></div>
-      <div className="menu-intro__side reveal reveal-mask"><Image src="/images/gallery-room-5.png" alt="Filet mignon sliders and fries" fill sizes="(max-width: 760px) 100vw, 36vw" /></div>
+      <div className="menu-intro__main reveal reveal-mask" data-parallax="0.035"><Image src="/images/fish-and-chips.png" alt="Fish and chips at Monahan and Fitzgerald" fill sizes="(max-width: 760px) 100vw, 64vw" /></div>
+      <div className="menu-intro__side reveal reveal-mask" data-parallax="0.06"><Image src="/images/gallery-room-5.png" alt="Filet mignon sliders and fries" fill sizes="(max-width: 760px) 100vw, 36vw" /></div>
       <div className="menu-intro__copy reveal"><strong>Made for the bar.<br />Made for the table.</strong><p>Pub classics, familiar favorites, and enough range for the whole group.</p></div>
     </section>
 
     <section className="menu-page shell">
       {menu.map((group, index) => <article id={slug(group.category)} key={group.category} className={`menu-group reveal ${index % 2 ? "menu-group--reverse" : ""}`}>
-        <div className="menu-group__photo reveal-mask"><Image src={menuImages[group.category].src} alt={menuImages[group.category].alt} fill sizes="(max-width: 760px) 100vw, 42vw" /></div>
+        <div className="menu-group__photo reveal-mask" data-parallax="0.025"><Image src={menuImages[group.category].src} alt={menuImages[group.category].alt} fill sizes="(max-width: 760px) 100vw, 42vw" /></div>
         <div className="menu-group__content">
           <div className="menu-group__heading"><h2>{group.category}</h2><span>{group.items.length} favorites</span></div>
           <div className="menu-group__items">{group.items.map((item) => <Link href="/order" key={item}>

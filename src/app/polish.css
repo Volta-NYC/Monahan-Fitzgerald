@@ -1,0 +1,35 @@
+/* Shared interaction and small-screen refinements. */
+html { scroll-padding-top: 104px; }
+body { overflow-x: hidden; }
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  transform: translateY(-160%);
+  padding: 12px 16px;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 700;
+  transition: transform 160ms var(--ease);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+h1, h2, h3 { text-wrap: balance; }
+
+.button {
+  line-height: 1.05;
+  text-align: center;
+  transition: transform 140ms ease, background 180ms var(--ease), color 180ms var(--ease);
+}
+
+.mobile-menu { transition: max-height 300ms var(--ease), padding 300ms var(--ease); }
+
+@media (max-width: 760px) {
+  html { scroll-padding-top: 88px; }
+  .button { min-height: 52px; }
+  .nav__toggle { min-width: 44px; min-height: 44px; }
+  .mobile-menu a { display: flex; align-items: center; min-height: 44px; }
+}

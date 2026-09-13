@@ -254,7 +254,6 @@ h2 {
 }
 
 .photo-reel__controls button:disabled { cursor: not-allowed; opacity: 0.35; }
-}
 
 .photo-reel__track {
   overflow-x: auto;
@@ -538,6 +537,11 @@ h2 {
 .social-gallery__image:not(.social-gallery__image--wide) { grid-column: 2; }
 
 .social-gallery__image img { object-fit: cover; }
+
+[data-parallax]:not(.reveal):not(.reveal-mask):not(.page-hero__image) {
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  will-change: transform;
+}
 
 .social-gallery__links {
   grid-column: 1 / -1;
