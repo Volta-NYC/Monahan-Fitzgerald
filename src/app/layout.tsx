@@ -7,6 +7,7 @@ import "./revamp.css";
 import "./polish.css";
 import "./gallery.css";
 import "./art-direction.css";
+import "./footer.css";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { ScrollMotion } from "@/components/ScrollMotion";
